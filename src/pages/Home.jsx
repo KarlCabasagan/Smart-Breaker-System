@@ -5,6 +5,14 @@ import RemoteIcon from "../components/RemoteIcon"
 import ProfileIcon from "../components/ProfileIcon"
 
 function Home() {
+    useEffect(() => {
+        const fetchUserData = async () => {
+            const { data: { session } } = await supabase.auth.getSession()
+            setUser({avatar: session.user.user_metadata.avatar_url})
+        }
+        fetchUserData()
+    }, [])
+    
     return(
         <>
             <div className="w-full h-[20%] flex items-center justify-center">
