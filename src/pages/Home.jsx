@@ -4,6 +4,8 @@ import PowerIcon from "../components/PowerIcon"
 import RemoteIcon from "../components/RemoteIcon"
 import ProfileIcon from "../components/ProfileIcon"
 import { supabase } from "../SupabaseClient"
+import { useEffect } from "react"
+
 
 function Home() {
     useEffect(() => {
