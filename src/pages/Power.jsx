@@ -17,7 +17,7 @@ function Power() {
             <div className="h-[90%] w-full flex justify-center items-center">
                 <div className=" h-10/12 w-10/12">
                     <div className="h-1/5 w-full flex flex-col-reverse items-end">
-                        <button className="bg-primary rounded-full p-3">
+                        <button onClick={handlePowerClick} className="bg-primary rounded-full p-3">
                             <img src="./icons/microphone.svg" alt="" />
                         </button>
                     </div>
