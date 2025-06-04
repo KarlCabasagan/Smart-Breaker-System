@@ -4,10 +4,11 @@ import PowerIcon from "../components/PowerIcon"
 import RemoteIcon from "../components/RemoteIcon"
 import ProfileIcon from "../components/ProfileIcon"
 import { supabase } from "../SupabaseClient"
-import { useEffect } from "react"
+import { useEffect, useState} from "react"
 
 
 function Home() {
+    const [user, setUser] = useState({})
     useEffect(() => {
         const fetchUserData = async () => {
             const { data: { session } } = await supabase.auth.getSession()
