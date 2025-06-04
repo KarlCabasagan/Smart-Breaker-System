@@ -29,7 +29,7 @@ function Profile() {
         <>
             <div className="h-[35%] w-full flex flex-col justify-center items-center gap-2 mt-15">
                 <div className="rounded-full border-4 border-primary shadow-lg relative mt-2">
-                    <img src={user && user.avatar ? user.avatar : "./nav_icons/profile.svg"} className="size-44" alt="" />
+                    <img src={user && user.avatar ? user.avatar : "./nav_icons/profile.svg"} className="size-44 rounded-full" alt="" />
                     <div className="bg-white p-2 absolute bottom-5 right-0 z-10 flex justify-center items-center rounded-full shadow-lg">
                         <img src="./icons/pen.svg" className="size-3" alt="" />
                     </div>
