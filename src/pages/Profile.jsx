@@ -4,11 +4,11 @@ import PowerIcon from "../components/PowerIcon"
 import RemoteIcon from "../components/RemoteIcon"
 import ProfileIcon from "../components/ProfileIcon"
 import { supabase } from "../SupabaseClient"
-import { useContext } from "react"
+import { useContext, useEffect, useState } from "react"
 import { UserContext } from "../App"
 
 function Profile() {
-    const [user, setUser] = useContext(UserContext)
+    const [user, setUser] = useState({})
 
     const navigate = useNavigate()
 
@@ -16,6 +16,14 @@ function Profile() {
         await supabase.auth.signOut()
         navigate('/login')
     }
+
+    useEffect(() => {
+        const fetchUserData = async () => {
+            const { data: { session } } = await supabase.auth.getSession()
+            setUser({id: session.user.id, email: session.user.email, fullname: session.user.user_metadata.display_name})
+        }
+        fetchUserData()
+    }, [])
 
     return(
         <>
@@ -27,8 +35,8 @@ function Profile() {
                     </div>
                 </div>
                 <div className="w-11/12 flex flex-col justify-evenly items-center">
-                    <span className="text-2xl font-semibold">{user[2]}</span>
-                    <span className="font-light text-sm tracking-wider">{user[1]}</span>
+                    <span className="text-2xl font-semibold">{user && user.fullname}</span>
+                    <span className="font-light text-sm tracking-wider">{user && user.email}</span>
                 </div>
             </div>
             <div className="h-[55%] w-full flex justify-center items-start">
