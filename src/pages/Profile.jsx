@@ -4,8 +4,12 @@ import PowerIcon from "../components/PowerIcon"
 import RemoteIcon from "../components/RemoteIcon"
 import ProfileIcon from "../components/ProfileIcon"
 import { supabase } from "../SupabaseClient"
+import { useContext } from "react"
+import { UserContext } from "../App"
 
 function Profile() {
+    const [user, setUser] = useContext(UserContext)
+
     const navigate = useNavigate()
 
     const handeLogout = async (e) => {
@@ -23,8 +27,8 @@ function Profile() {
                     </div>
                 </div>
                 <div className="w-11/12 flex flex-col justify-evenly items-center">
-                    <span className="text-2xl font-semibold">John Karl Harley Cabasagan</span>
-                    <span className="font-light text-sm tracking-wider">johnkarlharleycabasagan@gmail.com</span>
+                    <span className="text-2xl font-semibold">{user[2]}</span>
+                    <span className="font-light text-sm tracking-wider">{user[1]}</span>
                 </div>
             </div>
             <div className="h-[55%] w-full flex justify-center items-start">

@@ -1,9 +1,12 @@
-import { useState } from "react"
+import { useContext, useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import { supabase } from "../SupabaseClient"
+import { UserContext } from "../App"
 
 
 function Register() {
+    const [user, setUser] = useContext(UserContext)
+
     const [fullName, setFullName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
@@ -24,6 +27,9 @@ function Register() {
             email,
             password,
             options: {
+                data : {
+                    display_name: fullName
+                },
                 emailRedirectTo: 'http://smartbreaker.netlify.app/verify',
             }
         })
@@ -31,6 +37,7 @@ function Register() {
         else {
             setError(null)
             setRegistered(true)
+            setUser([0, email, fullName])
         }
         // else navigate('/login')
     }

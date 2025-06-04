@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import { useEffect, useState } from 'react'
+import { createContext, useEffect, useState } from 'react'
 import Home from './pages/Home'
 import Authentication from './pages/Authentication'
 import Login from './pages/Login'
@@ -12,8 +12,10 @@ import ProtectedRoute from './ProtectedRoute'
 import ProtectAuth from './ProtectAuth'
 import Verify from './pages/Verify'
 
-function App() {
+export const UserContext = createContext({})
 
+function App() {
+  const [user, setUser] = useState([])
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
@@ -30,11 +32,11 @@ function App() {
     )
   }
 
-
   return (
     <div className="h-screen w-screen flex items-center justify-center bg-[#E5E4E2]">
       <div className="h-screen w-screen bg-[#FAF9F6] md:w-1/2 xl:w-1/4 relative">
         <Router>
+        <UserContext.Provider value={[user, setUser]}>
           <Routes>
             <Route path="/" element={<ProtectAuth><Authentication /></ProtectAuth>} />
             <Route path="/login" element={<ProtectAuth><Login /></ProtectAuth>} />
@@ -45,6 +47,7 @@ function App() {
             <Route path="/control" element={<ProtectedRoute><Control /></ProtectedRoute>} />
             <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
           </Routes>
+          </UserContext.Provider>
         </Router>
       </div>
     </div>

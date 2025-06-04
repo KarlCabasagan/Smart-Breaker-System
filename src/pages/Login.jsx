@@ -1,9 +1,12 @@
-import { useState } from "react"
+import { useContext, useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import { supabase } from "../SupabaseClient"
+import { UserContext } from "../App"
 
 
 function Login() {
+    const [user, setUser] = useContext(UserContext)
+
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [error, setError] = useState(null)
@@ -13,16 +16,21 @@ function Login() {
         e.preventDefault()
         const { error } = await supabase.auth.signInWithPassword({email, password})
         if (error) setError(error.message)
-        else navigate('/home')
+        else {
+            const { data: { session } } = await supabase.auth.getSession()
+            setUser([session.user.id, session.user.email, session.user.user_metadata.display_name,])
+
+            navigate('/home')
+        }
     }
 
     return(
         <>
             <div className="h-2/6 w-full flex flex-col-reverse items-center relative">
-                    <img className="w-3/5" src="logo-full.png" alt="logo.png" />
-                    <div className="w-10/12 flex justify-start absolute bottom-0">
-                        <span className="text-lg">Login to your Account</span>
-                    </div>
+                <img className="w-3/5" src="logo-full.png" alt="logo.png" />
+                <div className="w-10/12 flex justify-start absolute bottom-0">
+                    <span className="text-lg">Login to your Account</span>
+                </div>
             </div>
             <div className="w-full flex flex-col items-center mt-6">
                 <form className="w-10/12" onSubmit={handleLogin}>
