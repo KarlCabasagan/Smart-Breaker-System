@@ -21,7 +21,7 @@ function Home() {
                         <img src="./logo-letter.png" className="size-50" alt="logo" />
                     </div>
                     <div className="h-full flex justify-center items-center">
-                        <img src="./nav_icons/profile.svg" className="size-14 mb-3 mr-2" alt="profile" />
+                        <img src={user && user.avatar ? user.avatar : "./nav_icons/profile.svg"} className="size-14 mb-3 mr-2" alt="profile" />
                     </div>
                 </div>
             </div>
