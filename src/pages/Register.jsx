@@ -24,7 +24,7 @@ function Register() {
             email,
             password,
             options: {
-                emailRedirectTo: 'http://localhost:5173/home',
+                emailRedirectTo: 'http://smartbreaker.netlify.app/verify',
             }
         })
         if (error) setError(error.message)
