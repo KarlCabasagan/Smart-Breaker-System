@@ -20,7 +20,7 @@ function Profile() {
     useEffect(() => {
         const fetchUserData = async () => {
             const { data: { session } } = await supabase.auth.getSession()
-            setUser({id: session.user.id, email: session.user.email, fullname: session.user.user_metadata.display_name})
+            setUser({id: session.user.id, email: session.user.email, fullname: session.user.user_metadata.display_name, avatar: session.user.user_metadata.avatar_url})
         }
         fetchUserData()
     }, [])
@@ -31,7 +31,7 @@ function Profile() {
                 <div className="rounded-full border-4 border-primary shadow-lg relative mt-2">
                     <img src="./nav_icons/profile.svg" className="size-44" alt="" />
                     <div className="bg-white p-2 absolute bottom-5 right-0 z-10 flex justify-center items-center rounded-full shadow-lg">
-                        <img src="./icons/pen.svg" className="size-3" alt="" />
+                        <img src={user && user.avatar ? user.avatar : "./icons/pen.svg"} className="size-3" alt="" />
                     </div>
                 </div>
                 <div className="w-11/12 flex flex-col justify-evenly items-center">

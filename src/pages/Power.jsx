@@ -3,8 +3,15 @@ import HomeIcon from "../components/HomeIcon"
 import PowerIcon from "../components/PowerIcon"
 import RemoteIcon from "../components/RemoteIcon"
 import ProfileIcon from "../components/ProfileIcon"
+import { useState } from "react"
 
 function Power() {
+    const [power, setPower] = useState(false)
+
+    const handlePowerClick = (e) => {
+        setPower(!power)
+    }
+
     return(
         <>
             <div className="h-[90%] w-full flex justify-center items-center">
@@ -15,13 +22,13 @@ function Power() {
                         </button>
                     </div>
                     <div className="h-1/2 w-full flex flex-col justify-evenly items-center">
-                        <div className="h-[205px] w-[205px] bg-white rounded-full border-8 border-[#B9B8B6] shadow-xl/30 flex justify-center items-center">
+                        <div onClick={handlePowerClick} className={(power ? "border-primary shadow-primary" : "border-[#B9B8B6]") + " h-[205px] w-[205px] bg-white rounded-full border-8 shadow-xl/30 flex justify-center items-center"}>
                             <div className="h-[113px] w-[113px] bg-[#FAF9F6] rounded-full inset-shadow-sm flex justify-center items-center">
-                                <img src="./icons/power.svg" className="w-1/2" alt="" />
+                                {power ? <img src="./icons/powerOn.svg" className="w-1/2" alt="" /> : <img src="./icons/power.svg" className="w-1/2" alt="" />}
                             </div>
                         </div>
                         <div>
-                            <span className="text-2xl font-light">Power Off</span>
+                            <span className="text-2xl font-light">{power ? "Power On" : "Power Off"}</span>
                         </div>
                     </div>
                     <div className="h-[30%] w-full flex flex-col justify-evenly items-center">

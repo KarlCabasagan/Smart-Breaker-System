@@ -24,6 +24,14 @@ function Login() {
         }
     }
 
+    const signInWithGoogle = async () => {
+        const { data, error } = await supabase.auth.signInWithOAuth({
+          provider: 'google',
+        })
+      
+        if (error) console.error(error)
+    }
+
     return(
         <>
             <div className="h-2/6 w-full flex flex-col-reverse items-center relative">
@@ -48,7 +56,7 @@ function Login() {
                     <span className="text-gray-700">- or login with -</span>
                 </div>
                 <div className="w-9/12 flex justify-evenly mt-4">
-                    <div className="bg-white w-3/12 p-3 flex justify-center items-center shadow rounded-lg">
+                    <div onClick={signInWithGoogle} className="bg-white w-3/12 p-3 flex justify-center items-center shadow rounded-lg">
                         <img src="/icons/google.png" alt="" />
                     </div>
                     <div className="bg-white w-3/12 p-3 flex justify-center items-center shadow rounded-lg">
