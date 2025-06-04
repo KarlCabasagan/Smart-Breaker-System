@@ -3,6 +3,7 @@ import HomeIcon from "../components/HomeIcon"
 import PowerIcon from "../components/PowerIcon"
 import RemoteIcon from "../components/RemoteIcon"
 import ProfileIcon from "../components/ProfileIcon"
+import { supabase } from "../SupabaseClient"
 
 function Home() {
     useEffect(() => {
