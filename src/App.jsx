@@ -11,7 +11,7 @@ import Profile from './pages/Profile'
 import ProtectedRoute from './ProtectedRoute'
 import ProtectAuth from './ProtectAuth'
 import Verify from './pages/Verify'
-import verifyforzoho from '/.pages/verifyforzoho'
+import Verifyforzoho from './pages/Verifyforzoho'
 
 export const UserContext = createContext({})
 
@@ -47,7 +47,7 @@ function App() {
             <Route path="/power" element={<ProtectedRoute><Power /></ProtectedRoute>} />
             <Route path="/control" element={<ProtectedRoute><Control /></ProtectedRoute>} />
             <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
-            <Route path="/zohoverify/verifyforzoho.html" element={<verifyforzoho />} />
+            <Route path="/zohoverify/verifyforzoho.html" element={<Verifyforzoho />} />
           </Routes>
           </UserContext.Provider>
         </Router>
