@@ -11,7 +11,7 @@ import Profile from './pages/Profile'
 import ProtectedRoute from './ProtectedRoute'
 import ProtectAuth from './ProtectAuth'
 import Verify from './pages/Verify'
-import Verifyforzoho from './pages/Verifyforzoho'
+import Verifyforzoho from './pages/VerifyZoho'
 
 export const UserContext = createContext({})
 
